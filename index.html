@@ -32,109 +32,56 @@
     height:100vh;
     overflow:hidden;
   }
-  /* ===== Header ===== */
   header{
     padding:16px 16px 12px;
     background:linear-gradient(180deg, var(--surface) 0%, var(--bg) 100%);
     border-bottom:1px solid var(--line);
     flex-shrink:0;
   }
-  .header-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-start;
-  }
+  .header-top{ display:flex; justify-content:space-between; align-items:flex-start; }
   .kedai-name{
-    font-family:var(--font-display);
-    font-weight:700;
-    font-size:20px;
-    letter-spacing:0.3px;
-    display:flex;
-    align-items:center;
-    gap:8px;
-    cursor:pointer;
+    font-family:var(--font-display); font-weight:700; font-size:20px; letter-spacing:0.3px;
+    display:flex; align-items:center; gap:8px; cursor:pointer;
   }
   .kedai-name .edit-icon{opacity:0.5; font-size:13px;}
   .today-date{font-size:11px; color:var(--muted); margin-top:2px; text-transform:capitalize;}
-  .omzet-badge{
-    text-align:right;
-  }
+  .omzet-badge{ text-align:right; }
   .omzet-badge .label{font-size:10px; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px;}
   .omzet-badge .value{font-family:var(--font-num); font-size:17px; font-weight:700; color:var(--yellow);}
 
-  /* ===== Tabs content ===== */
-  main{
-    flex:1;
-    overflow-y:auto;
-    padding:14px 14px 12px;
-    -webkit-overflow-scrolling:touch;
-  }
+  main{ flex:1; overflow-y:auto; padding:14px 14px 12px; -webkit-overflow-scrolling:touch; }
   .view{display:none;}
   .view.active{display:block;}
 
   h2.section-title{
-    font-family:var(--font-display);
-    font-size:15px;
-    color:var(--muted);
-    text-transform:uppercase;
-    letter-spacing:1px;
-    margin:0 0 10px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+    font-family:var(--font-display); font-size:15px; color:var(--muted);
+    text-transform:uppercase; letter-spacing:1px; margin:0 0 10px;
+    display:flex; justify-content:space-between; align-items:center;
   }
   h2.section-title button.link{
-    font-family:var(--font-body);
-    background:none; border:none; color:var(--yellow);
-    font-size:12px; letter-spacing:0; text-transform:none;
-    padding:4px; cursor:pointer;
+    font-family:var(--font-body); background:none; border:none; color:var(--yellow);
+    font-size:12px; letter-spacing:0; text-transform:none; padding:4px; cursor:pointer;
   }
 
-  /* Menu grid */
-  .menu-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:10px;
-    margin-bottom:16px;
-  }
+  .menu-grid{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:16px; }
   .menu-btn{
-    background:var(--surface);
-    border:1px solid var(--line);
-    border-radius:10px;
-    padding:14px 10px;
-    text-align:left;
-    color:var(--cream);
-    cursor:pointer;
-    transition:transform 0.08s ease, background 0.15s ease;
-    position:relative;
+    background:var(--surface); border:1px solid var(--line); border-radius:10px;
+    padding:14px 10px; text-align:left; color:var(--cream); cursor:pointer;
+    transition:transform 0.08s ease, background 0.15s ease; position:relative;
   }
   .menu-btn:active{transform:scale(0.96); background:var(--surface-2);}
   .menu-btn .m-name{font-size:14px; font-weight:600; line-height:1.25;}
   .menu-btn .m-price{font-family:var(--font-num); font-size:13px; color:var(--yellow); margin-top:6px;}
   .menu-btn .m-qty{
-    position:absolute; top:-6px; right:-6px;
-    background:var(--red); color:#fff;
+    position:absolute; top:-6px; right:-6px; background:var(--red); color:#fff;
     font-family:var(--font-num); font-weight:700; font-size:12px;
     min-width:22px; height:22px; border-radius:11px;
-    display:flex; align-items:center; justify-content:center;
-    padding:0 5px;
+    display:flex; align-items:center; justify-content:center; padding:0 5px;
   }
 
-  /* Cart */
-  .cart-box{
-    background:var(--surface);
-    border:1px dashed var(--line);
-    border-radius:10px;
-    padding:12px 14px;
-    margin-bottom:14px;
-  }
+  .cart-box{ background:var(--surface); border:1px dashed var(--line); border-radius:10px; padding:12px 14px; margin-bottom:14px; }
   .cart-empty{color:var(--muted); font-size:13px; text-align:center; padding:10px 0;}
-  .cart-row{
-    display:flex; align-items:center; justify-content:space-between;
-    padding:7px 0;
-    border-bottom:1px solid var(--line);
-    font-size:13.5px;
-  }
+  .cart-row{ display:flex; align-items:center; justify-content:space-between; padding:7px 0; border-bottom:1px solid var(--line); font-size:13.5px; }
   .cart-row:last-child{border-bottom:none;}
   .cart-row .ci-name{flex:1; padding-right:8px;}
   .cart-row .ci-sub{font-family:var(--font-num); color:var(--muted); font-size:11px;}
@@ -151,40 +98,27 @@
     font-family:var(--font-num); font-weight:700; font-size:16px;
   }
 
-  /* Buttons */
   .btn{
-    display:block; width:100%; text-align:center;
-    padding:13px; border-radius:10px; border:none;
-    font-family:var(--font-body); font-weight:700; font-size:14.5px;
-    cursor:pointer; letter-spacing:0.2px;
+    display:block; width:100%; text-align:center; padding:13px; border-radius:10px; border:none;
+    font-family:var(--font-body); font-weight:700; font-size:14.5px; cursor:pointer; letter-spacing:0.2px;
   }
   .btn-primary{background:var(--red); color:#fff;}
   .btn-primary:active{background:var(--red-dim);}
   .btn-primary:disabled{background:var(--surface-2); color:var(--muted); cursor:not-allowed;}
   .btn-ghost{background:var(--surface-2); color:var(--cream); border:1px solid var(--line);}
-  .btn-sm{padding:9px 14px; font-size:13px; width:auto; display:inline-block;}
 
-  /* Forms */
   .field{margin-bottom:12px;}
   .field label{display:block; font-size:12px; color:var(--muted); margin-bottom:5px;}
   .field input, .field select{
-    width:100%; padding:11px 12px; border-radius:9px;
-    border:1px solid var(--line); background:var(--surface-2); color:var(--cream);
-    font-family:var(--font-body); font-size:14.5px;
+    width:100%; padding:11px 12px; border-radius:9px; border:1px solid var(--line);
+    background:var(--surface-2); color:var(--cream); font-family:var(--font-body); font-size:14.5px;
   }
   .field input:focus, .field select:focus{outline:1px solid var(--yellow);}
   .field-row{display:flex; gap:10px;}
   .field-row .field{flex:1;}
 
-  /* Stok list */
-  .log-card{
-    background:var(--surface); border:1px solid var(--line); border-radius:10px;
-    padding:12px 14px; margin-bottom:16px;
-  }
-  .log-item{
-    display:flex; justify-content:space-between; align-items:center;
-    padding:8px 0; border-bottom:1px solid var(--line); font-size:13.5px;
-  }
+  .log-card{ background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:12px 14px; margin-bottom:16px; }
+  .log-item{ display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid var(--line); font-size:13.5px; }
   .log-item:last-child{border-bottom:none;}
   .log-item .li-main{flex:1;}
   .log-item .li-sub{font-size:11px; color:var(--muted);}
@@ -192,18 +126,10 @@
   .log-item .li-del{background:none;border:none;color:var(--muted);font-size:16px;padding:4px 6px;cursor:pointer;}
   .empty-note{color:var(--muted); font-size:12.5px; text-align:center; padding:14px 0;}
 
-  /* Segmented control */
-  .segmented{
-    display:flex; background:var(--surface); border-radius:9px; padding:3px;
-    border:1px solid var(--line); margin-bottom:14px;
-  }
-  .segmented button{
-    flex:1; background:none; border:none; color:var(--muted);
-    padding:8px 6px; font-size:12.5px; font-weight:600; border-radius:7px; cursor:pointer;
-  }
+  .segmented{ display:flex; background:var(--surface); border-radius:9px; padding:3px; border:1px solid var(--line); margin-bottom:14px; }
+  .segmented button{ flex:1; background:none; border:none; color:var(--muted); padding:8px 6px; font-size:12.5px; font-weight:600; border-radius:7px; cursor:pointer; }
   .segmented button.active{background:var(--red); color:#fff;}
 
-  /* Recap cards */
   .recap-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:16px;}
   .recap-card{background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:12px;}
   .recap-card .rc-label{font-size:10.5px; color:var(--muted); text-transform:uppercase; letter-spacing:0.4px;}
@@ -216,40 +142,29 @@
   .tally-row:last-child{border-bottom:none;}
   .tally-row .t-count{font-family:var(--font-num); color:var(--yellow); font-weight:700;}
 
-  /* Bottom tab bar */
   nav.tabbar{
-    display:flex; flex-shrink:0;
-    background:var(--surface);
-    border-top:1px solid var(--line);
+    display:flex; flex-shrink:0; background:var(--surface); border-top:1px solid var(--line);
     padding-bottom:env(safe-area-inset-bottom, 0);
   }
   nav.tabbar button{
-    flex:1; background:none; border:none; color:var(--muted);
-    padding:10px 4px 8px; font-family:var(--font-body); cursor:pointer;
-    display:flex; flex-direction:column; align-items:center; gap:3px;
+    flex:1; background:none; border:none; color:var(--muted); padding:10px 4px 8px;
+    font-family:var(--font-body); cursor:pointer; display:flex; flex-direction:column; align-items:center; gap:3px;
   }
   nav.tabbar button .ic{font-size:19px;}
   nav.tabbar button .lb{font-size:10.5px; font-weight:600; letter-spacing:0.2px;}
   nav.tabbar button.active{color:var(--yellow);}
 
-  /* Modal */
-  .modal-overlay{
-    position:fixed; inset:0; background:rgba(0,0,0,0.55);
-    display:none; align-items:flex-end; justify-content:center; z-index:50;
-  }
+  .modal-overlay{ position:fixed; inset:0; background:rgba(0,0,0,0.55); display:none; align-items:flex-end; justify-content:center; z-index:50; }
   .modal-overlay.open{display:flex;}
   .modal-sheet{
-    background:var(--surface); width:100%; max-width:480px;
-    border-radius:16px 16px 0 0; padding:18px 18px calc(18px + env(safe-area-inset-bottom,0));
-    max-height:85vh; overflow-y:auto;
+    background:var(--surface); width:100%; max-width:480px; border-radius:16px 16px 0 0;
+    padding:18px 18px calc(18px + env(safe-area-inset-bottom,0)); max-height:85vh; overflow-y:auto;
     animation:slideUp 0.2s ease;
   }
   @keyframes slideUp{from{transform:translateY(20px); opacity:0.6;} to{transform:translateY(0); opacity:1;}}
   .modal-title{font-family:var(--font-display); font-size:17px; font-weight:700; margin:0 0 14px; display:flex; justify-content:space-between; align-items:center;}
   .modal-title .close{background:none; border:none; color:var(--muted); font-size:22px; cursor:pointer; line-height:1;}
-  .kembalian-box{
-    text-align:center; padding:16px; background:var(--surface-2); border-radius:10px; margin:14px 0;
-  }
+  .kembalian-box{ text-align:center; padding:16px; background:var(--surface-2); border-radius:10px; margin:14px 0; }
   .kembalian-box .kb-label{font-size:11px; color:var(--muted); text-transform:uppercase;}
   .kembalian-box .kb-val{font-family:var(--font-num); font-size:26px; font-weight:700; margin-top:4px;}
   .kembalian-box .kb-val.neg{color:var(--red);}
@@ -259,37 +174,12 @@
   .menu-edit-row input{flex:1;}
   .menu-edit-row input.price{max-width:100px;}
   .menu-edit-row .del{background:none; border:none; color:var(--red); font-size:18px; cursor:pointer; padding:4px;}
-  .menu-edit-row .resep-btn{background:none; border:1px solid var(--line); color:var(--yellow); font-size:11px; border-radius:6px; padding:6px 8px; cursor:pointer; white-space:nowrap;}
-
-  /* Stok bahan */
-  .lowstock-banner{
-    background:rgba(193,59,42,0.15); border:1px solid var(--red);
-    border-radius:10px; padding:10px 12px; margin-bottom:12px;
-    font-size:12.5px; line-height:1.5;
-  }
-  .lowstock-banner b{color:#ff9d8a;}
-  .bahan-row{display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid var(--line); font-size:13.5px;}
-  .bahan-row:last-child{border-bottom:none;}
-  .bahan-row .b-name{flex:1;}
-  .bahan-row .b-stock{font-family:var(--font-num); font-weight:700;}
-  .bahan-row .b-stock.low{color:var(--red);}
-  .bahan-row .b-stock.ok{color:var(--green);}
-  .bahan-edit-row{display:flex; gap:8px; align-items:center; padding:8px 0; border-bottom:1px solid var(--line); flex-wrap:wrap;}
-  .bahan-edit-row input, .bahan-edit-row select{flex:1; min-width:60px;}
-  .bahan-edit-row .del{background:none; border:none; color:var(--red); font-size:18px; cursor:pointer; padding:4px;}
-  .bahan-edit-row .bx-label{font-size:10px; color:var(--muted); width:100%; margin-bottom:-4px;}
-
-  .resep-row{display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid var(--line); font-size:13.5px; gap:10px;}
-  .resep-row:last-child{border-bottom:none;}
-  .resep-row .r-name{flex:1;}
-  .resep-row input{width:80px; text-align:right;}
 
   .toast{
     position:fixed; bottom:80px; left:50%; transform:translateX(-50%);
     background:var(--green-dim); color:#fff; padding:10px 18px; border-radius:20px;
     font-size:13px; font-weight:600; z-index:60; opacity:0; pointer-events:none;
-    transition:opacity 0.25s ease, transform 0.25s ease;
-    white-space:nowrap;
+    transition:opacity 0.25s ease, transform 0.25s ease; white-space:nowrap;
   }
   .toast.show{opacity:1; transform:translateX(-50%) translateY(-6px);}
 </style>
@@ -326,19 +216,11 @@
 
   <!-- STOK -->
   <section class="view" id="view-stok">
-    <h2 class="section-title">Stok Bahan <button class="link" id="btnKelolaBahan">Kelola Bahan</button></h2>
-    <div id="lowStockBannerWrap"></div>
-    <div class="log-card" id="bahanListWrap"></div>
-
-    <h2 class="section-title" style="margin-top:20px;">Belanja Bahan</h2>
+    <h2 class="section-title">Belanja Bahan</h2>
     <div class="log-card">
       <div class="field">
-        <label>Bahan</label>
-        <select id="stokBahanSelect"></select>
-      </div>
-      <div class="field" id="stokBahanBaruWrap" style="display:none;">
-        <label>Nama Bahan Baru</label>
-        <input type="text" id="stokBahanBaruNama" placeholder="Contoh: Indomie Goreng, Telur, Gula">
+        <label>Nama Bahan</label>
+        <input type="text" id="stokNama" placeholder="Contoh: Indomie Goreng, Telur, Gula">
       </div>
       <div class="field-row">
         <div class="field">
@@ -447,67 +329,47 @@
   </div>
 </div>
 
-<!-- Modal: Kelola Bahan -->
-<div class="modal-overlay" id="modalBahan">
-  <div class="modal-sheet">
-    <div class="modal-title">Kelola Bahan <button class="close" data-close="modalBahan">×</button></div>
-    <div id="bahanEditList"></div>
-    <div class="field-row" style="margin-top:14px;">
-      <div class="field"><label>Nama Bahan Baru</label><input type="text" id="newBahanNama" placeholder="Nama"></div>
-      <div class="field" style="max-width:90px;"><label>Satuan</label>
-        <select id="newBahanSatuan"><option>pcs</option><option>gram</option><option>ml</option><option>kg</option><option>liter</option><option>dus</option><option>pack</option><option>botol</option></select>
-      </div>
-    </div>
-    <div class="field-row">
-      <div class="field"><label>Stok Awal</label><input type="number" id="newBahanStok" placeholder="0" inputmode="decimal" step="any"></div>
-      <div class="field"><label>Batas Minimum (peringatan)</label><input type="number" id="newBahanMin" placeholder="0" inputmode="decimal" step="any"></div>
-    </div>
-    <button class="btn btn-ghost" id="btnTambahBahan">+ Tambah Bahan</button>
-  </div>
-</div>
-
-<!-- Modal: Atur Resep -->
-<div class="modal-overlay" id="modalResep">
-  <div class="modal-sheet">
-    <div class="modal-title" id="resepTitle">Atur Resep <button class="close" data-close="modalResep">×</button></div>
-    <div style="font-size:12px; color:var(--muted); margin-bottom:10px;">Isi berapa bahan yang kepakai untuk 1 porsi menu ini. Kosongkan/0 kalau bahan itu nggak dipakai.</div>
-    <div id="resepList"></div>
-    <button class="btn btn-primary" id="btnSimpanResep" style="margin-top:12px;">Simpan Resep</button>
-  </div>
-</div>
-
 <div class="toast" id="toast"></div>
 
 <script>
 (function(){
   // GANTI URL DI BAWAH INI dengan Web App URL hasil deploy Apps Script kamu
-  // (formatnya: https://script.google.com/macros/s/xxxxx/exec)
   const WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbwMdlFMA-D_FXhBPhI8TfFtx5cIDZayoxlvNl-w_YzFqb5AomOaCQowkgbdic9PQym0-g/exec';
 
   const DEFAULT_DATA = {
-    settings: { name: 'Warkop Saya' },
+    settings: { name: 'Warkop Saya', menuFinalV1: false },
     menu: [
-      {id:'m1', name:'Indomie Goreng', price:8000},
-      {id:'m2', name:'Indomie Kuah', price:8000},
-      {id:'m3', name:'Indomie Goreng + Telur', price:10000},
-      {id:'m4', name:'Indomie Kuah + Telur', price:10000},
-      {id:'m5', name:'Kopi Hitam', price:5000},
-      {id:'m6', name:'Kopi Susu', price:6000},
-      {id:'m7', name:'Teh Manis', price:4000},
-      {id:'m8', name:'Es Teh', price:5000},
-      {id:'m9', name:'Es Jeruk', price:6000},
-      {id:'m10', name:'Nasi + Telur', price:8000},
-      {id:'m11', name:'Gorengan', price:2000},
-      {id:'m12', name:'Rokok Batangan', price:2500},
+      {id:'m1',  name:'Bubur Kacang Hijau', price:8000},
+      {id:'m2',  name:'Bubur Kacang Ketan Hitam', price:12000},
+      {id:'m3',  name:'Es Jeruk', price:10000},
+      {id:'m4',  name:'Good Day Cappucino', price:7000},
+      {id:'m5',  name:'Good Day Freeze', price:8000},
+      {id:'m6',  name:'Indomie Goreng', price:8000},
+      {id:'m7',  name:'Indomie Goreng + Telur', price:12000},
+      {id:'m8',  name:'Indomie Kuah', price:8000},
+      {id:'m9',  name:'Indomie Kuah + Telur', price:12000},
+      {id:'m10', name:'Jeniper', price:10000},
+      {id:'m11', name:'Kentang Goreng', price:12000},
+      {id:'m12', name:'Kopi Item', price:4000},
+      {id:'m13', name:'Milo', price:8000},
+      {id:'m14', name:'Nutrisari', price:7000},
+      {id:'m15', name:'Ovomaltine', price:8000},
+      {id:'m16', name:'Pancong Cokelat', price:12000},
+      {id:'m17', name:'Pancong Cokelat Keju', price:12000},
+      {id:'m18', name:'Pancong Crumble Caramel', price:12000},
+      {id:'m19', name:'Pancong Keju', price:12000},
+      {id:'m20', name:'Pancong Matcha', price:12000},
+      {id:'m21', name:'Pancong Original', price:8000},
+      {id:'m22', name:'Teh Manis', price:5000},
+      {id:'m23', name:'Teh Tarik', price:7000},
     ],
     transactions: [],
     stockLogs: [],
     costLogs: [],
-    ingredients: []
   };
 
   let data = null;
-  let cart = {}; // menuId -> qty
+  let cart = {}; // menuId -> {qty, name, price}
 
   function uid(){ return Date.now().toString(36) + Math.random().toString(36).slice(2,7); }
   function rupiah(n){ return 'Rp' + Math.round(n).toLocaleString('id-ID'); }
@@ -522,20 +384,12 @@
     t.classList.add('show');
     setTimeout(()=>t.classList.remove('show'), 1600);
   }
+  function escapeHtml(s){ return (s||'').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+  function escapeAttr(s){ return escapeHtml(s); }
 
-  function backfillData(d){
-    d.settings = d.settings || {name:'Warkop Saya'};
-    d.menu = d.menu || DEFAULT_DATA.menu;
-    d.transactions = d.transactions || [];
-    d.stockLogs = d.stockLogs || [];
-    d.costLogs = d.costLogs || [];
-    d.ingredients = d.ingredients || [];
-    d.menu.forEach(m=>{ m.recipe = m.recipe || []; });
-    return d;
-  }
-
-  // JSONP: cara ambil data lewat tag <script> alih-alih fetch(), supaya nggak
-  // kena blokir CORS dari browser (Apps Script nggak ngasih izin CORS ke fetch biasa).
+  // ===== Backend: Google Apps Script, tanpa fetch() sama sekali =====
+  // GET lewat JSONP (tag <script>), POST lewat form submission ke iframe tersembunyi.
+  // Ini menghindari batasan CORS/CSP yang suka mengunci fetch()/XHR ke domain luar.
   let jsonpCounter = 0;
   function jsonpRequest(url){
     return new Promise((resolve, reject)=>{
@@ -546,31 +400,17 @@
         delete window[cbName];
         if(script.parentNode) script.parentNode.removeChild(script);
       };
-      window[cbName] = (payload)=>{
-        settled = true;
-        cleanup();
-        resolve(payload);
-      };
-      script.onerror = ()=>{
-        if(!settled){ settled = true; cleanup(); reject(new Error('JSONP gagal dimuat')); }
-      };
+      window[cbName] = (payload)=>{ settled = true; cleanup(); resolve(payload); };
+      script.onerror = ()=>{ if(!settled){ settled = true; cleanup(); reject(new Error('JSONP gagal dimuat')); } };
       const sep = url.indexOf('?') === -1 ? '?' : '&';
       script.src = url + sep + 'callback=' + cbName + '&_=' + Date.now();
       document.head.appendChild(script);
-      setTimeout(()=>{
-        if(!settled){ settled = true; cleanup(); reject(new Error('JSONP timeout')); }
-      }, 10000);
+      setTimeout(()=>{ if(!settled){ settled = true; cleanup(); reject(new Error('JSONP timeout')); } }, 10000);
     });
   }
-
   async function backendGet(){
     return await jsonpRequest(WEBAPP_URL);
   }
-
-  // Kirim data TANPA fetch() sama sekali — pakai form submission ke iframe
-  // tersembunyi (teknik lama sebelum fetch/CORS ada). Ini biasanya nggak kena
-  // batasan Content-Security-Policy yang suka mengunci fetch()/XHR ke domain luar,
-  // karena form submission dianggap navigasi, bukan request AJAX.
   let backendSetCounter = 0;
   function backendSet(dataObj){
     return new Promise((resolve)=>{
@@ -595,13 +435,32 @@
       document.body.appendChild(form);
       form.submit();
 
-      // Nggak bisa baca respons form submission, jadi anggap terkirim setelah jeda singkat
       setTimeout(()=>{
         if(form.parentNode) form.parentNode.removeChild(form);
         if(iframe.parentNode) iframe.parentNode.removeChild(iframe);
         resolve();
       }, 1200);
     });
+  }
+
+  function backfillData(d){
+    d.settings = d.settings || {name:'Warkop Saya'};
+    d.menu = d.menu || DEFAULT_DATA.menu;
+    d.transactions = d.transactions || [];
+    d.stockLogs = d.stockLogs || [];
+    d.costLogs = d.costLogs || [];
+    return d;
+  }
+
+  // Migrasi satu-kali: ganti daftar menu ke daftar final yang benar, dan buang
+  // sisa-sisa data resep/bahan dari versi lama (kalau ada). Cuma jalan sekali,
+  // transaksi/belanja/biaya yang sudah tercatat TETAP AMAN, nggak kehapus.
+  function ensureFinalMenuV1(){
+    if(data.settings.menuFinalV1) return false;
+    data.menu = JSON.parse(JSON.stringify(DEFAULT_DATA.menu)).map(m=>({ id:'m'+uid(), name:m.name, price:m.price }));
+    delete data.ingredients;
+    data.settings.menuFinalV1 = true;
+    return true;
   }
 
   async function loadData(){
@@ -614,9 +473,6 @@
         await saveData();
       }
     }catch(e){
-      // Sama seperti sebelumnya: kalau gagal ambil (misal koneksi jelek), JANGAN
-      // langsung nimpa data asli. Coba sekali lagi, kalau tetap gagal baru pakai
-      // default SEMENTARA di layar tanpa menyimpannya ke server.
       console.error('Gagal ambil data, coba ulang sebentar...', e);
       try{
         await new Promise(r=>setTimeout(r, 1500));
@@ -632,102 +488,32 @@
         toast('Gagal sambung ke server, coba refresh lagi');
       }
     }
+    if(ensureFinalMenuV1()){
+      await saveData();
+      toast('Daftar menu diperbarui');
+    }
     renderAll();
   }
 
-  // Seed satu-kali: nambah menu Pancong / Bubur Kacang Hijau / Kentang Goreng beserta
-  // bahan & resepnya kalau belum ada. Aman dipanggil berkali-kali — nggak duplikat,
-  // dan nggak menimpa menu/resep yang sudah pernah diisi manual.
-  async function ensureSeedPancongBuburKentang(){
-    if(data.settings.seedPancongBubur) return;
-    let changed = false;
-
-    function findOrCreateIngredient(name, unit, minStock){
-      let ing = data.ingredients.find(i=>i.name.toLowerCase()===name.toLowerCase());
-      if(!ing){
-        ing = { id:'i'+uid(), name, unit, stock:0, minStock: minStock||0 };
-        data.ingredients.push(ing);
-        changed = true;
-      }
-      return ing;
-    }
-    function findOrCreateMenu(name, price){
-      let item = data.menu.find(m=>m.name.toLowerCase()===name.toLowerCase());
-      if(!item){
-        item = { id:'m'+uid(), name, price, recipe: [] };
-        data.menu.push(item);
-        changed = true;
-      }
-      item.recipe = item.recipe || [];
-      return item;
-    }
-
-    const specs = {
-      'Pancong': { price:3000, ing:[
-        ['Tepung Beras', 15, 'gram', 500],
-        ['Kelapa Parut', 15, 'gram', 300],
-        ['Santan', 10, 'ml', 500],
-        ['Gula Pasir', 5, 'gram', 300],
-      ]},
-      'Bubur Kacang Hijau': { price:8000, ing:[
-        ['Kacang Hijau', 45, 'gram', 300],
-        ['Santan', 60, 'ml', 500],
-        ['Gula Merah', 35, 'gram', 300],
-      ]},
-      'Kentang Goreng': { price:10000, ing:[
-        ['Kentang Mentah', 180, 'gram', 1000],
-        ['Minyak Goreng', 15, 'ml', 500],
-      ]},
-    };
-
-    Object.entries(specs).forEach(([menuName, spec])=>{
-      const item = findOrCreateMenu(menuName, spec.price);
-      if(item.recipe.length===0){
-        item.recipe = spec.ing.map(([iname, qty, unit, minStock])=>{
-          const ing = findOrCreateIngredient(iname, unit, minStock);
-          return { ingredientId: ing.id, qty };
-        });
-        changed = true;
-      }
-    });
-
-    data.settings.seedPancongBubur = true;
-    if(changed){
-      await saveData();
-      renderAll();
-      toast('Menu & resep Pancong/Bubur/Kentang ditambahkan');
-    }
-  }
-
   async function saveData(){
-    try{
-      await backendSet(data);
-    }catch(e){
-      console.error('Storage error', e);
-      toast('Gagal menyimpan data');
-    }
+    try{ await backendSet(data); }
+    catch(e){ console.error('Storage error', e); toast('Gagal menyimpan data'); }
   }
 
-  // Ambil versi terbaru dari server (dipakai sebelum menulis, supaya nggak menimpa
-  // perubahan dari device lain yang mungkin nambah data di waktu bersamaan)
   async function fetchLatest(){
     try{
       const raw = await backendGet();
-      if(raw && Object.keys(raw).length > 0){
-        data = backfillData(raw);
-      }
+      if(raw && Object.keys(raw).length > 0){ data = backfillData(raw); }
     }catch(e){
       console.error('fetchLatest gagal, pakai data lokal', e);
     }
   }
 
-  // Refresh tampilan yang bersifat "baca saja" tanpa ganggu input yang lagi diisi
   function renderReadOnly(){
     document.getElementById('kedaiNameText').textContent = data.settings.name;
     renderMenuGrid();
     renderHeaderOmzet();
     renderStokLists();
-    renderStokBahan();
     renderRekap();
   }
 
@@ -739,7 +525,7 @@
       btn.classList.add('active');
       document.getElementById('view-'+btn.dataset.view).classList.add('active');
       if(btn.dataset.view === 'rekap') renderRekap();
-      if(btn.dataset.view === 'stok'){ renderStokLists(); renderStokBahan(); populateStokBahanSelect(); }
+      if(btn.dataset.view === 'stok') renderStokLists();
     });
   });
 
@@ -857,25 +643,14 @@
       return { id, name: c.name, price: c.price, qty: c.qty };
     });
     const newTx = {
-      id: uid(),
-      time: new Date().toISOString(),
+      id: uid(), time: new Date().toISOString(),
       items, total, cashReceived: diterima, change: diterima-total
     };
     await fetchLatest();
     data.transactions.push(newTx);
-    // Kurangi stok bahan otomatis sesuai resep menu yang terjual
-    newTx.items.forEach(ci=>{
-      const menuItem = data.menu.find(m=>m.id===ci.id);
-      if(menuItem && menuItem.recipe && menuItem.recipe.length){
-        menuItem.recipe.forEach(r=>{
-          const ing = data.ingredients.find(i=>i.id===r.ingredientId);
-          if(ing) ing.stock -= r.qty * ci.qty;
-        });
-      }
-    });
     await saveData();
     cart = {};
-    renderMenuGrid(); renderCart(); renderHeaderOmzet(); renderStokLists(); renderStokBahan(); renderRekap();
+    renderMenuGrid(); renderCart(); renderHeaderOmzet(); renderStokLists(); renderRekap();
     closeModal('modalBayar');
     toast('Transaksi tersimpan');
   });
@@ -891,7 +666,6 @@
       row.className = 'menu-edit-row';
       row.innerHTML = `<input type="text" value="${escapeAttr(item.name)}" data-field="name" data-id="${item.id}">
         <input type="number" class="price" value="${item.price}" data-field="price" data-id="${item.id}">
-        <button class="resep-btn" data-resep="${item.id}">Resep</button>
         <button class="del" data-del="${item.id}">🗑</button>`;
       wrap.appendChild(row);
     });
@@ -919,203 +693,31 @@
         renderMenuEditList(); renderMenuGrid(); renderCart();
       });
     });
-    wrap.querySelectorAll('[data-resep]').forEach(b=>{
-      b.addEventListener('click', ()=> openResepModal(b.dataset.resep));
-    });
   }
   document.getElementById('btnTambahMenu').addEventListener('click', async ()=>{
     const nama = document.getElementById('newMenuNama').value.trim();
     const harga = parseFloat(document.getElementById('newMenuHarga').value) || 0;
     if(!nama){ toast('Isi nama menu dulu'); return; }
     await fetchLatest();
-    data.menu.push({id:'m'+uid(), name:nama, price:harga, recipe:[]});
+    data.menu.push({id:'m'+uid(), name:nama, price:harga});
     await saveData();
     document.getElementById('newMenuNama').value=''; document.getElementById('newMenuHarga').value='';
     renderMenuEditList(); renderMenuGrid();
   });
 
-  // ===== Kelola Bahan (ingredients) =====
-  document.getElementById('btnKelolaBahan').addEventListener('click', ()=>{ renderBahanEditList(); openModal('modalBahan'); });
-
-  function renderBahanEditList(){
-    const wrap = document.getElementById('bahanEditList');
-    wrap.innerHTML = '';
-    if(data.ingredients.length===0){
-      wrap.innerHTML = '<div class="empty-note">Belum ada bahan. Tambah di bawah.</div>';
-    }
-    const sortedIngredients = [...data.ingredients].sort((a,b)=>a.name.localeCompare(b.name, 'id'));
-    sortedIngredients.forEach(ing=>{
-      const row = document.createElement('div');
-      row.className = 'bahan-edit-row';
-      row.innerHTML = `
-        <input type="text" value="${escapeAttr(ing.name)}" data-field="name" data-id="${ing.id}" style="flex:2;">
-        <input type="number" value="${ing.stock}" data-field="stock" data-id="${ing.id}" title="Stok saat ini" inputmode="decimal" step="any">
-        <span style="font-size:11px;color:var(--muted);">${escapeHtml(ing.unit)}</span>
-        <input type="number" value="${ing.minStock}" data-field="minStock" data-id="${ing.id}" title="Batas minimum" inputmode="decimal" step="any">
-        <button class="del" data-del-bahan="${ing.id}">🗑</button>`;
-      wrap.appendChild(row);
-    });
-    wrap.querySelectorAll('input').forEach(inp=>{
-      inp.addEventListener('change', async ()=>{
-        const targetId = inp.dataset.id;
-        const field = inp.dataset.field;
-        const val = inp.value;
-        await fetchLatest();
-        const ing = data.ingredients.find(i=>i.id===targetId);
-        if(!ing) return;
-        if(field==='name') ing.name = val.trim() || ing.name;
-        else if(field==='stock') ing.stock = parseFloat(val) || 0;
-        else if(field==='minStock') ing.minStock = parseFloat(val) || 0;
-        await saveData();
-        renderStokBahan(); populateStokBahanSelect();
-      });
-    });
-    wrap.querySelectorAll('[data-del-bahan]').forEach(b=>{
-      b.addEventListener('click', async ()=>{
-        const targetId = b.dataset.delBahan;
-        await fetchLatest();
-        data.ingredients = data.ingredients.filter(i=>i.id!==targetId);
-        data.menu.forEach(m=>{ m.recipe = (m.recipe||[]).filter(r=>r.ingredientId!==targetId); });
-        await saveData();
-        renderBahanEditList(); renderStokBahan(); populateStokBahanSelect();
-      });
-    });
-  }
-
-  document.getElementById('btnTambahBahan').addEventListener('click', async ()=>{
-    const nama = document.getElementById('newBahanNama').value.trim();
-    const satuan = document.getElementById('newBahanSatuan').value;
-    const stok = parseFloat(document.getElementById('newBahanStok').value) || 0;
-    const min = parseFloat(document.getElementById('newBahanMin').value) || 0;
-    if(!nama){ toast('Isi nama bahan dulu'); return; }
-    await fetchLatest();
-    data.ingredients.push({ id:'i'+uid(), name: nama, unit: satuan, stock: stok, minStock: min });
-    await saveData();
-    document.getElementById('newBahanNama').value=''; document.getElementById('newBahanStok').value=''; document.getElementById('newBahanMin').value='';
-    renderBahanEditList(); renderStokBahan(); populateStokBahanSelect();
-    toast('Bahan tersimpan');
-  });
-
-  function renderStokBahan(){
-    const wrap = document.getElementById('bahanListWrap');
-    const bannerWrap = document.getElementById('lowStockBannerWrap');
-    if(!data.ingredients || data.ingredients.length===0){
-      wrap.innerHTML = '<div class="empty-note">Belum ada bahan dikelola. Tap "Kelola Bahan" buat mulai lacak stok & dapat peringatan belanja.</div>';
-      bannerWrap.innerHTML = '';
-      return;
-    }
-    const sorted = [...data.ingredients].sort((a,b)=> (a.stock - a.minStock) - (b.stock - b.minStock));
-    wrap.innerHTML = sorted.map(ing=>{
-      const low = ing.stock <= ing.minStock;
-      return `<div class="bahan-row">
-        <div class="b-name">${escapeHtml(ing.name)}</div>
-        <div class="b-stock ${low?'low':'ok'}">${numFmt(ing.stock)} ${escapeHtml(ing.unit)}</div>
-      </div>`;
-    }).join('');
-    const lowOnes = data.ingredients.filter(i=>i.stock <= i.minStock);
-    if(lowOnes.length>0){
-      bannerWrap.innerHTML = `<div class="lowstock-banner">⚠️ <b>Waktunya belanja:</b> ${lowOnes.map(i=>escapeHtml(i.name)+' (sisa '+numFmt(i.stock)+' '+escapeHtml(i.unit)+')').join(', ')}</div>`;
-    } else {
-      bannerWrap.innerHTML = '';
-    }
-  }
-
-  // ===== Dropdown bahan di form Belanja =====
-  function populateStokBahanSelect(){
-    const sel = document.getElementById('stokBahanSelect');
-    const prevVal = sel.value;
-    sel.innerHTML = data.ingredients.map(i=>`<option value="${i.id}">${escapeHtml(i.name)}</option>`).join('')
-      + `<option value="__new__">➕ Bahan Baru...</option>`;
-    if(data.ingredients.some(i=>i.id===prevVal)) sel.value = prevVal;
-    toggleStokBahanBaru();
-  }
-  function toggleStokBahanBaru(){
-    const sel = document.getElementById('stokBahanSelect');
-    const isNew = sel.value === '__new__' || data.ingredients.length===0;
-    document.getElementById('stokBahanBaruWrap').style.display = isNew ? 'block' : 'none';
-    const satuanSel = document.getElementById('stokSatuan');
-    if(!isNew){
-      const ing = data.ingredients.find(i=>i.id===sel.value);
-      if(ing){ satuanSel.value = ing.unit; satuanSel.disabled = true; }
-    } else {
-      satuanSel.disabled = false;
-    }
-  }
-  document.getElementById('stokBahanSelect').addEventListener('change', toggleStokBahanBaru);
-
-  // ===== Atur Resep (menu -> bahan) =====
-  let resepEditingMenuId = null;
-  function openResepModal(menuId){
-    resepEditingMenuId = menuId;
-    const item = data.menu.find(m=>m.id===menuId);
-    if(!item) return;
-    document.getElementById('resepTitle').innerHTML = `Resep: ${escapeHtml(item.name)} <button class="close" data-close="modalResep">×</button>`;
-    const listWrap = document.getElementById('resepList');
-    if(data.ingredients.length===0){
-      listWrap.innerHTML = '<div class="empty-note">Belum ada bahan. Tambah dulu di tab Stok → Kelola Bahan.</div>';
-    } else {
-      const sortedIng = [...data.ingredients].sort((a,b)=>a.name.localeCompare(b.name, 'id'));
-      listWrap.innerHTML = sortedIng.map(ing=>{
-        const existing = (item.recipe||[]).find(r=>r.ingredientId===ing.id);
-        return `<div class="resep-row">
-          <div class="r-name">${escapeHtml(ing.name)} <span style="color:var(--muted); font-size:11px;">(${escapeHtml(ing.unit)})</span></div>
-          <input type="number" data-ing="${ing.id}" value="${existing? existing.qty : ''}" placeholder="0" inputmode="decimal" step="any">
-        </div>`;
-      }).join('');
-    }
-    openModal('modalResep');
-    // re-bind close buttons since we replaced title HTML
-    document.querySelectorAll('#modalResep [data-close]').forEach(b=>{
-      b.addEventListener('click', ()=>closeModal(b.dataset.close));
-    });
-  }
-  document.getElementById('btnSimpanResep').addEventListener('click', async ()=>{
-    if(!resepEditingMenuId) return;
-    const inputs = document.querySelectorAll('#resepList input[data-ing]');
-    const recipe = [];
-    inputs.forEach(inp=>{
-      const qty = parseFloat(inp.value) || 0;
-      if(qty>0) recipe.push({ ingredientId: inp.dataset.ing, qty });
-    });
-    await fetchLatest();
-    const item = data.menu.find(m=>m.id===resepEditingMenuId);
-    if(item) item.recipe = recipe;
-    await saveData();
-    closeModal('modalResep');
-    toast('Resep tersimpan');
-  });
-
-  // ===== Stok: Belanja Bahan =====
+  // ===== Stok: Belanja Bahan (sederhana, tanpa lacak sisa stok) =====
   document.getElementById('btnSimpanStok').addEventListener('click', async ()=>{
+    const nama = document.getElementById('stokNama').value.trim();
     const jumlah = parseFloat(document.getElementById('stokJumlah').value) || 0;
     const satuan = document.getElementById('stokSatuan').value;
     const harga = parseFloat(document.getElementById('stokHarga').value) || 0;
-    const selVal = document.getElementById('stokBahanSelect').value;
-    const isNew = selVal === '__new__' || data.ingredients.length===0;
-    const namaBaruInput = document.getElementById('stokBahanBaruNama').value.trim();
-
-    if(harga<=0){ toast('Isi harga belanja dulu'); return; }
-    if(isNew && !namaBaruInput){ toast('Isi nama bahan dulu'); return; }
-
+    if(!nama || harga<=0){ toast('Isi nama bahan & harga dulu'); return; }
+    const entry = { id: uid(), time: new Date().toISOString(), name: nama, qty: jumlah, unit: satuan, cost: harga };
     await fetchLatest();
-    let ingredientId, ingredientName;
-    if(isNew){
-      const newIng = { id:'i'+uid(), name: namaBaruInput, unit: satuan, stock: 0, minStock: 0 };
-      data.ingredients.push(newIng);
-      ingredientId = newIng.id; ingredientName = newIng.name;
-    } else {
-      const ing = data.ingredients.find(i=>i.id===selVal);
-      if(!ing){ toast('Bahan tidak ditemukan, coba lagi'); return; }
-      ingredientId = ing.id; ingredientName = ing.name;
-    }
-    const ingRef = data.ingredients.find(i=>i.id===ingredientId);
-    if(ingRef) ingRef.stock += jumlah;
-
-    const entry = { id: uid(), time: new Date().toISOString(), name: ingredientName, ingredientId, qty: jumlah, unit: satuan, cost: harga };
     data.stockLogs.push(entry);
     await saveData();
-    document.getElementById('stokJumlah').value=''; document.getElementById('stokHarga').value=''; document.getElementById('stokBahanBaruNama').value='';
-    renderStokLists(); renderStokBahan(); populateStokBahanSelect();
+    document.getElementById('stokNama').value=''; document.getElementById('stokJumlah').value=''; document.getElementById('stokHarga').value='';
+    renderStokLists();
     toast('Belanja bahan tersimpan');
   });
 
@@ -1217,7 +819,6 @@
     labaEl.textContent = (laba<0?'-':'') + rupiah(Math.abs(laba));
     labaEl.className = 'rc-val ' + (laba>=0?'pos':'neg');
 
-    // item terlaris
     const tally = {};
     trans.forEach(t=>t.items.forEach(it=>{
       tally[it.name] = (tally[it.name]||0) + it.qty;
@@ -1232,7 +833,6 @@
       `).join('');
     }
 
-    // riwayat
     const riwayatWrap = document.getElementById('riwayatWrap');
     const sortedTrans = [...trans].sort((a,b)=>b.time.localeCompare(a.time)).slice(0,30);
     if(sortedTrans.length===0){
@@ -1257,8 +857,6 @@
     const d = new Date(iso);
     return d.toLocaleDateString('id-ID',{day:'numeric',month:'short'}) + ' · ' + d.toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'});
   }
-  function escapeHtml(s){ return (s||'').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
-  function escapeAttr(s){ return escapeHtml(s); }
 
   function renderAll(){
     document.getElementById('kedaiNameText').textContent = data.settings.name;
@@ -1267,424 +865,19 @@
     renderCart();
     renderHeaderOmzet();
     renderStokLists();
-    renderStokBahan();
-    populateStokBahanSelect();
     renderRekap();
   }
 
-  // Seed kedua: resep standar warkop indomie (indomie, kopi/teh, nasi telur, gorengan, rokok).
-  // Sama seperti seed sebelumnya — cuma isi resep yang masih kosong, aman dipanggil berkali-kali.
-  async function ensureSeedAllRecipes(){
-    if(data.settings.seedAllRecipesV1) return;
-    let changed = false;
-
-    function findOrCreateIngredient(name, unit, minStock){
-      let ing = data.ingredients.find(i=>i.name.toLowerCase()===name.toLowerCase());
-      if(!ing){
-        ing = { id:'i'+uid(), name, unit, stock:0, minStock: minStock||0 };
-        data.ingredients.push(ing);
-        changed = true;
-      }
-      return ing;
-    }
-    function findMenu(name){
-      return data.menu.find(m=>m.name.toLowerCase()===name.toLowerCase());
-    }
-
-    const specs = {
-      'Indomie Goreng': [
-        ['Indomie Goreng', 1, 'pcs', 20],
-        ['Minyak Goreng', 15, 'ml', 500],
-      ],
-      'Indomie Kuah': [
-        ['Indomie Kuah', 1, 'pcs', 20],
-      ],
-      'Indomie Goreng + Telur': [
-        ['Indomie Goreng', 1, 'pcs', 20],
-        ['Minyak Goreng', 20, 'ml', 500],
-        ['Telur', 1, 'pcs', 20],
-      ],
-      'Indomie Kuah + Telur': [
-        ['Indomie Kuah', 1, 'pcs', 20],
-        ['Telur', 1, 'pcs', 20],
-      ],
-      'Kopi Hitam': [
-        ['Kopi Bubuk', 7, 'gram', 250],
-        ['Gula Pasir', 10, 'gram', 300],
-      ],
-      'Kopi Susu': [
-        ['Kopi Bubuk', 7, 'gram', 250],
-        ['Susu Kental Manis', 20, 'ml', 300],
-        ['Gula Pasir', 5, 'gram', 300],
-      ],
-      'Teh Manis': [
-        ['Teh Celup', 1, 'pcs', 20],
-        ['Gula Pasir', 15, 'gram', 300],
-      ],
-      'Es Teh': [
-        ['Teh Celup', 1, 'pcs', 20],
-        ['Gula Pasir', 15, 'gram', 300],
-        ['Es Batu', 100, 'gram', 1000],
-      ],
-      'Es Jeruk': [
-        ['Sirup Jeruk', 30, 'ml', 300],
-        ['Gula Pasir', 5, 'gram', 300],
-        ['Es Batu', 100, 'gram', 1000],
-      ],
-      'Nasi + Telur': [
-        ['Beras', 150, 'gram', 1000],
-        ['Telur', 1, 'pcs', 20],
-        ['Kecap Manis', 5, 'ml', 250],
-      ],
-      'Gorengan': [
-        ['Tepung Terigu', 25, 'gram', 500],
-        ['Minyak Goreng', 10, 'ml', 500],
-      ],
-      'Rokok Batangan': [
-        ['Rokok', 1, 'batang', 20],
-      ],
-    };
-
-    Object.entries(specs).forEach(([menuName, ingList])=>{
-      const item = findMenu(menuName);
-      if(!item) return; // menu itu nggak ada di daftar kamu, dilewati
-      item.recipe = item.recipe || [];
-      if(item.recipe.length===0){
-        item.recipe = ingList.map(([iname, qty, unit, minStock])=>{
-          const ing = findOrCreateIngredient(iname, unit, minStock);
-          return { ingredientId: ing.id, qty };
-        });
-        changed = true;
-      }
-    });
-
-    data.settings.seedAllRecipesV1 = true;
-    if(changed){
-      await saveData();
-      renderAll();
-      toast('Resep semua menu warkop ditambahkan');
-    }
-  }
-
   // Auto-refresh tiap 7 detik: ambil data terbaru dari device lain dan update tampilan.
-  // Nggak menyentuh keranjang yang lagi diisi, jadi aman meski lagi input pesanan.
   setInterval(async ()=>{
-    if(document.hidden) return; // hemat, nggak polling kalau tab nggak aktif
+    if(document.hidden) return;
     const menuModalOpen = document.getElementById('modalMenu').classList.contains('open');
     await fetchLatest();
     renderReadOnly();
-    if(menuModalOpen) renderMenuEditList(); // sinkronkan modal kalau lagi kebuka
+    if(menuModalOpen) renderMenuEditList();
   }, 7000);
 
-  // Update resep minuman (kecuali Es Jeruk) jadi berbasis sachet + tambah es batu.
-  // Ini SENGAJA menimpa resep lama Kopi Hitam/Kopi Susu/Teh Manis/Es Teh (bukan cuma isi yang kosong),
-  // karena memang diminta ubah pendekatannya. Jalan sekali per data (dijaga flag), aman dipanggil berkali-kali.
-  async function ensureSachetDrinksUpdate(){
-    if(data.settings.sachetDrinksV1) return;
-    let changed = false;
-
-    function findOrCreateIngredient(name, unit, minStock){
-      let ing = data.ingredients.find(i=>i.name.toLowerCase()===name.toLowerCase());
-      if(!ing){
-        ing = { id:'i'+uid(), name, unit, stock:0, minStock: minStock||0 };
-        data.ingredients.push(ing);
-        changed = true;
-      }
-      return ing;
-    }
-    function findMenu(name){
-      return data.menu.find(m=>m.name.toLowerCase()===name.toLowerCase());
-    }
-
-    // Semua minuman kecuali Es Jeruk: pakai sachet + es batu
-    const specs = {
-      'Kopi Hitam': [
-        ['Kopi Hitam Sachet', 1, 'pcs', 20],
-        ['Es Batu', 100, 'gram', 1000],
-      ],
-      'Kopi Susu': [
-        ['Kopi Susu Sachet', 1, 'pcs', 20],
-        ['Es Batu', 100, 'gram', 1000],
-      ],
-      'Teh Manis': [
-        ['Teh Celup', 1, 'pcs', 20],
-        ['Gula Sachet', 1, 'pcs', 20],
-        ['Es Batu', 100, 'gram', 1000],
-      ],
-      'Es Teh': [
-        ['Teh Celup', 1, 'pcs', 20],
-        ['Gula Sachet', 1, 'pcs', 20],
-        ['Es Batu', 100, 'gram', 1000],
-      ],
-      // Es Jeruk sengaja tidak disentuh — tetap pakai resep sirup/gula sebelumnya
-    };
-
-    Object.entries(specs).forEach(([menuName, ingList])=>{
-      const item = findMenu(menuName);
-      if(!item) return;
-      item.recipe = ingList.map(([iname, qty, unit, minStock])=>{
-        const ing = findOrCreateIngredient(iname, unit, minStock);
-        return { ingredientId: ing.id, qty };
-      });
-      changed = true;
-    });
-
-    data.settings.sachetDrinksV1 = true;
-    if(changed){
-      await saveData();
-      renderAll();
-      toast('Resep minuman diperbarui (sachet + es batu)');
-    }
-  }
-  // Paket pembaruan besar sesuai koreksi dari pemilik kedai:
-  // - Santan & Kelapa Parut disatukan jadi 1 bahan
-  // - Es Jeruk pakai Jeruk peras asli, bukan sirup
-  // - Bubur Kacang Hijau ditambah Ketan Hitam
-  // - Minuman sachet yang benar: Kopi Hitam, Ovomaltine, Milo, Good Day, Nutrisari, Teh Tarik
-  //   (Gula Sachet dihapus — nggak ada barangnya; Kopi Susu/Teh Manis/Es Teh balik ke bahan curah)
-  // - Tambah varian topping: Pancong Keju, Pancong Matcha, Kentang Goreng Crumble/Caramel/Cokelat
-  async function ensureMenuRefinementV2(){
-    if(data.settings.refinementV2) return;
-    let changed = false;
-
-    function findOrCreateIngredient(name, unit, minStock){
-      let ing = data.ingredients.find(i=>i.name.toLowerCase()===name.toLowerCase());
-      if(!ing){
-        ing = { id:'i'+uid(), name, unit, stock:0, minStock: minStock||0 };
-        data.ingredients.push(ing);
-        changed = true;
-      }
-      return ing;
-    }
-    function findMenu(name){ return data.menu.find(m=>m.name.toLowerCase()===name.toLowerCase()); }
-    function removeIngredientEntirely(name){
-      const ing = data.ingredients.find(i=>i.name.toLowerCase()===name.toLowerCase());
-      if(!ing) return;
-      data.ingredients = data.ingredients.filter(i=>i.id!==ing.id);
-      data.menu.forEach(m=>{ m.recipe = (m.recipe||[]).filter(r=>r.ingredientId!==ing.id); });
-      changed = true;
-    }
-    // Satukan 2 bahan jadi 1 (gabung stok, gabung qty resep kalau kepakai di menu yang sama)
-    function unifyIngredient(keepName, unit, minStock, aliasNames){
-      let keep = data.ingredients.find(i=>i.name.toLowerCase()===keepName.toLowerCase());
-      if(!keep){ keep = { id:'i'+uid(), name: keepName, unit, stock:0, minStock: minStock||0 }; data.ingredients.push(keep); changed=true; }
-      else { keep.unit = unit; }
-      aliasNames.forEach(alias=>{
-        const other = data.ingredients.find(i=> i.id!==keep.id && i.name.toLowerCase()===alias.toLowerCase());
-        if(!other) return;
-        keep.stock += other.stock || 0;
-        data.menu.forEach(m=>{
-          if(!m.recipe) return;
-          const otherEntry = m.recipe.find(r=>r.ingredientId===other.id);
-          if(!otherEntry) return;
-          const keepEntry = m.recipe.find(r=>r.ingredientId===keep.id);
-          if(keepEntry){ keepEntry.qty += otherEntry.qty; m.recipe = m.recipe.filter(r=>r.ingredientId!==other.id); }
-          else { otherEntry.ingredientId = keep.id; }
-        });
-        data.ingredients = data.ingredients.filter(i=>i.id!==other.id);
-        changed = true;
-      });
-      return keep;
-    }
-
-    // 1) Satukan Santan & Kelapa Parut
-    unifyIngredient('Kelapa Parut/Santan', 'ml', 500, ['Santan', 'Kelapa Parut']);
-
-    // 2) Es Jeruk: sirup jeruk -> jeruk peras asli
-    const esJeruk = findMenu('Es Jeruk');
-    if(esJeruk){
-      esJeruk.recipe = (esJeruk.recipe||[]).filter(r=>{
-        const ing = data.ingredients.find(i=>i.id===r.ingredientId);
-        return !(ing && ing.name.toLowerCase()==='sirup jeruk');
-      });
-      const jeruk = findOrCreateIngredient('Jeruk', 'pcs', 30);
-      if(!esJeruk.recipe.find(r=>r.ingredientId===jeruk.id)){
-        esJeruk.recipe.push({ ingredientId: jeruk.id, qty: 3 });
-      }
-      changed = true;
-    }
-    removeIngredientEntirely('Sirup Jeruk');
-
-    // 3) Bubur Kacang Hijau: tambah Ketan Hitam
-    const bubur = findMenu('Bubur Kacang Hijau');
-    if(bubur){
-      const ketanHitam = findOrCreateIngredient('Ketan Hitam', 'gram', 300);
-      bubur.recipe = bubur.recipe || [];
-      if(!bubur.recipe.find(r=>r.ingredientId===ketanHitam.id)){
-        bubur.recipe.push({ ingredientId: ketanHitam.id, qty: 40 });
-        changed = true;
-      }
-    }
-
-    // 4) Minuman sachet yang benar: Kopi Hitam tetap sachet+es batu.
-    //    Kopi Susu / Teh Manis / Es Teh balik ke bahan curah (bukan sachet).
-    const kopiSusu = findMenu('Kopi Susu');
-    if(kopiSusu){
-      kopiSusu.recipe = [
-        { ingredientId: findOrCreateIngredient('Kopi Bubuk', 'gram', 250).id, qty: 7 },
-        { ingredientId: findOrCreateIngredient('Susu Kental Manis', 'ml', 300).id, qty: 20 },
-        { ingredientId: findOrCreateIngredient('Gula Pasir', 'gram', 300).id, qty: 5 },
-      ];
-      changed = true;
-    }
-    removeIngredientEntirely('Kopi Susu Sachet');
-
-    const tehManis = findMenu('Teh Manis');
-    if(tehManis){
-      tehManis.recipe = [
-        { ingredientId: findOrCreateIngredient('Teh Celup', 'pcs', 20).id, qty: 1 },
-        { ingredientId: findOrCreateIngredient('Gula Pasir', 'gram', 300).id, qty: 15 },
-      ];
-      changed = true;
-    }
-    const esTeh = findMenu('Es Teh');
-    if(esTeh){
-      esTeh.recipe = [
-        { ingredientId: findOrCreateIngredient('Teh Celup', 'pcs', 20).id, qty: 1 },
-        { ingredientId: findOrCreateIngredient('Gula Pasir', 'gram', 300).id, qty: 15 },
-        { ingredientId: findOrCreateIngredient('Es Batu', 'gram', 1000).id, qty: 100 },
-      ];
-      changed = true;
-    }
-    removeIngredientEntirely('Gula Sachet');
-
-    // 5) Tambah 5 menu minuman sachet yang belum ada: Ovomaltine, Milo, Good Day, Nutrisari, Teh Tarik
-    const sachetDrinks = {
-      'Ovomaltine': 8000, 'Milo': 8000, 'Good Day': 7000, 'Nutrisari': 6000, 'Teh Tarik': 7000,
-    };
-    Object.entries(sachetDrinks).forEach(([name, price])=>{
-      let item = findMenu(name);
-      if(!item){ item = { id:'m'+uid(), name, price, recipe: [] }; data.menu.push(item); changed = true; }
-      if(!item.recipe || item.recipe.length===0){
-        const sachetIng = findOrCreateIngredient(name+' Sachet', 'pcs', 20);
-        const esBatu = findOrCreateIngredient('Es Batu', 'gram', 1000);
-        item.recipe = [ { ingredientId: sachetIng.id, qty: 1 }, { ingredientId: esBatu.id, qty: 100 } ];
-        changed = true;
-      }
-    });
-
-    // 6) Varian topping: Pancong Keju/Matcha, Kentang Goreng Crumble/Caramel/Cokelat
-    const pancongBase = findMenu('Pancong');
-    const kentangBase = findMenu('Kentang Goreng');
-    function addVariant(name, baseItem, price, toppingName, toppingUnit, toppingQty, toppingMin){
-      if(!baseItem) return;
-      let item = findMenu(name);
-      if(!item){ item = { id:'m'+uid(), name, price, recipe: [] }; data.menu.push(item); changed = true; }
-      if(!item.recipe || item.recipe.length===0){
-        const baseCloned = (baseItem.recipe||[]).map(r=>({ ingredientId: r.ingredientId, qty: r.qty }));
-        const topping = findOrCreateIngredient(toppingName, toppingUnit, toppingMin);
-        item.recipe = baseCloned.concat([{ ingredientId: topping.id, qty: toppingQty }]);
-        changed = true;
-      }
-    }
-    addVariant('Pancong Keju', pancongBase, 5000, 'Keju Parut', 'gram', 15, 300);
-    addVariant('Pancong Matcha', pancongBase, 5000, 'Bubuk Matcha', 'gram', 5, 200);
-    addVariant('Kentang Goreng Crumble', kentangBase, 13000, 'Bubuk Crumble', 'gram', 20, 300);
-    addVariant('Kentang Goreng Caramel', kentangBase, 13000, 'Saus Caramel', 'ml', 15, 300);
-    addVariant('Kentang Goreng Cokelat', kentangBase, 13000, 'Saus Cokelat', 'ml', 15, 300);
-
-    data.settings.refinementV2 = true;
-    if(changed){
-      await saveData();
-      renderAll();
-      toast('Resep & menu diperbarui');
-    }
-  }
-  // Pengaman terakhir: jalan TIAP KALI app dibuka (bukan cuma sekali), cek semua menu satu-satu.
-  // Kalau ada menu yang masih kosong resepnya (termasuk menu baru yang kamu tambah sendiri nanti),
-  // otomatis dikasih resep berdasarkan pola nama menunya. Kalau nggak ada pola yang cocok,
-  // dikasih fallback bahan generik biar tetap ada perhitungan, bukan dibiarkan kosong.
-  async function ensureAllMenuHaveRecipe(){
-    let changed = false;
-    function findOrCreateIngredient(name, unit, minStock){
-      let ing = data.ingredients.find(i=>i.name.toLowerCase()===name.toLowerCase());
-      if(!ing){
-        ing = { id:'i'+uid(), name, unit, stock:0, minStock: minStock||0 };
-        data.ingredients.push(ing);
-        changed = true;
-      }
-      return ing;
-    }
-    function ref(name, unit, minStock, qty){
-      return { ingredientId: findOrCreateIngredient(name, unit, minStock).id, qty };
-    }
-
-    data.menu.forEach(item=>{
-      item.recipe = item.recipe || [];
-      if(item.recipe.length > 0) return; // sudah punya resep, lewati
-
-      const n = item.name.toLowerCase();
-      let recipe = [];
-
-      if(n.includes('indomie') || n.includes('mie')){
-        const isKuah = n.includes('kuah') || n.includes('rebus');
-        recipe.push(ref(isKuah ? 'Indomie Kuah' : 'Indomie Goreng', 'pcs', 20, 1));
-        if(!isKuah) recipe.push(ref('Minyak Goreng', 'ml', 500, 15));
-        if(n.includes('telur')) recipe.push(ref('Telur', 'pcs', 20, 1));
-      } else if(n.includes('nasi')){
-        recipe.push(ref('Beras', 'gram', 1000, 150));
-        if(n.includes('telur')) recipe.push(ref('Telur', 'pcs', 20, 1));
-        recipe.push(ref('Kecap Manis', 'ml', 250, 5));
-      } else if(n.includes('kentang')){
-        recipe.push(ref('Kentang Mentah', 'gram', 1000, 180));
-        recipe.push(ref('Minyak Goreng', 'ml', 500, 15));
-      } else if(n.includes('pancong')){
-        recipe.push(ref('Tepung Beras', 'gram', 500, 15));
-        recipe.push(ref('Kelapa Parut/Santan', 'ml', 500, 25));
-        recipe.push(ref('Gula Pasir', 'gram', 300, 5));
-      } else if(n.includes('bubur')){
-        recipe.push(ref('Kacang Hijau', 'gram', 300, 45));
-        recipe.push(ref('Kelapa Parut/Santan', 'ml', 500, 60));
-        recipe.push(ref('Gula Merah', 'gram', 300, 35));
-      } else if(n.includes('gorengan')){
-        recipe.push(ref('Tepung Terigu', 'gram', 500, 25));
-        recipe.push(ref('Minyak Goreng', 'ml', 500, 10));
-      } else if(n.includes('rokok')){
-        recipe.push(ref('Rokok', 'batang', 20, 1));
-      } else if(n.includes('jeruk')){
-        recipe.push(ref('Jeruk', 'pcs', 30, 3));
-        recipe.push(ref('Gula Pasir', 'gram', 300, 5));
-        if(n.includes('es')) recipe.push(ref('Es Batu', 'gram', 1000, 100));
-      } else if(['kopi hitam','ovomaltine','milo','good day','nutrisari','teh tarik'].some(k=>n.includes(k))){
-        // minuman sachet
-        const label = item.name;
-        recipe.push(ref(label+' Sachet', 'pcs', 20, 1));
-        recipe.push(ref('Es Batu', 'gram', 1000, 100));
-      } else if(n.includes('kopi')){
-        recipe.push(ref('Kopi Bubuk', 'gram', 250, 7));
-        if(n.includes('susu')) recipe.push(ref('Susu Kental Manis', 'ml', 300, 20));
-        recipe.push(ref('Gula Pasir', 'gram', 300, 5));
-      } else if(n.includes('teh')){
-        recipe.push(ref('Teh Celup', 'pcs', 20, 1));
-        recipe.push(ref('Gula Pasir', 'gram', 300, 15));
-        if(n.includes('es')) recipe.push(ref('Es Batu', 'gram', 1000, 100));
-      } else if(n.includes('es ') || n.startsWith('es')){
-        recipe.push(ref('Gula Pasir', 'gram', 300, 5));
-        recipe.push(ref('Es Batu', 'gram', 1000, 100));
-      } else {
-        // Fallback terakhir: nggak ada pola nama yang cocok. Tetap dikasih 1 bahan
-        // generik senama menunya, biar ada perhitungan (bukan kosong sama sekali).
-        // Ini perlu dicek manual & diganti sama bahan asli lewat tombol "Resep".
-        recipe.push(ref(item.name + ' (bahan baku)', 'pcs', 10, 1));
-      }
-
-      item.recipe = recipe;
-      changed = true;
-    });
-
-    if(changed){
-      await saveData();
-      renderAll();
-      toast('Resep menu yang belum lengkap sudah dilengkapi');
-    }
-  }
-  loadData().then(async ()=>{
-    await ensureSeedPancongBuburKentang();
-    await ensureSeedAllRecipes();
-    await ensureSachetDrinksUpdate();
-    await ensureMenuRefinementV2();
-    await ensureAllMenuHaveRecipe();
-  });
+  loadData();
 })();
 </script>
 </body>
