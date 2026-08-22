@@ -412,15 +412,57 @@
     return await jsonpRequest(WEBAPP_URL);
   }
 
-  // Simpan data lewat JSONP juga (GET dengan action=set), bukan form submission —
-  // supaya kita BENERAN TAU apakah tersimpan atau nggak, bukan kirim-dan-berharap.
+  // Kirim data lewat form ke iframe tersembunyi (nggak ada batas panjang kayak
+  // URL/GET), TAPI langsung dicek ulang pakai JSONP GET buat mastiin beneran
+  // tersimpan. Kalau nggak cocok, coba sekali lagi. Kalau masih gagal, baru
+  // dianggap gagal beneran (toast jujur, bukan diam-diam gagal).
+  let formPostCounter = 0;
+  function formPostOnce(dataObj){
+    return new Promise((resolve)=>{
+      const frameName = 'wk_frame_' + (formPostCounter++) + '_' + Date.now();
+      const iframe = document.createElement('iframe');
+      iframe.name = frameName;
+      iframe.style.display = 'none';
+      document.body.appendChild(iframe);
+
+      const form = document.createElement('form');
+      form.method = 'POST';
+      form.action = WEBAPP_URL;
+      form.target = frameName;
+      form.style.display = 'none';
+
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = 'data';
+      input.value = JSON.stringify(dataObj);
+      form.appendChild(input);
+
+      document.body.appendChild(form);
+      form.submit();
+
+      setTimeout(()=>{
+        if(form.parentNode) form.parentNode.removeChild(form);
+        if(iframe.parentNode) iframe.parentNode.removeChild(iframe);
+        resolve();
+      }, 1000);
+    });
+  }
   async function backendSet(dataObj){
-    const encoded = encodeURIComponent(JSON.stringify(dataObj));
-    const url = WEBAPP_URL + '?action=set&data=' + encoded;
-    const result = await jsonpRequest(url);
-    if(!result || result.ok !== true){
-      throw new Error('Server menolak simpan data');
-    }
+    const target = JSON.stringify(dataObj);
+    await formPostOnce(dataObj);
+    await new Promise(r=>setTimeout(r, 900));
+    let verify = null;
+    try{ verify = await backendGet(); }catch(e){ /* diam-diam, dicek lagi di bawah */ }
+    if(JSON.stringify(verify) === target) return; // sukses, cocok
+
+    // Percobaan kedua kalau belum cocok
+    await formPostOnce(dataObj);
+    await new Promise(r=>setTimeout(r, 900));
+    let verify2 = null;
+    try{ verify2 = await backendGet(); }catch(e){ /* lanjut ke pengecekan di bawah */ }
+    if(JSON.stringify(verify2) === target) return; // sukses di percobaan kedua
+
+    throw new Error('Gagal konfirmasi data tersimpan di server setelah 2x coba');
   }
 
   function backfillData(d){
