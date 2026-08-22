@@ -337,7 +337,7 @@
   const WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbwMdlFMA-D_FXhBPhI8TfFtx5cIDZayoxlvNl-w_YzFqb5AomOaCQowkgbdic9PQym0-g/exec';
 
   const DEFAULT_DATA = {
-    settings: { name: 'Warkop Saya', menuFinalV1: false },
+    settings: { name: 'BEN BURJO', menuFinalV1: false, nameFixV1: false },
     menu: [
       {id:'m1',  name:'Bubur Kacang Hijau', price:8000},
       {id:'m2',  name:'Bubur Kacang Ketan Hitam', price:12000},
@@ -411,36 +411,16 @@
   async function backendGet(){
     return await jsonpRequest(WEBAPP_URL);
   }
-  let backendSetCounter = 0;
-  function backendSet(dataObj){
-    return new Promise((resolve)=>{
-      const frameName = 'wk_frame_' + (backendSetCounter++) + '_' + Date.now();
-      const iframe = document.createElement('iframe');
-      iframe.name = frameName;
-      iframe.style.display = 'none';
-      document.body.appendChild(iframe);
 
-      const form = document.createElement('form');
-      form.method = 'POST';
-      form.action = WEBAPP_URL;
-      form.target = frameName;
-      form.style.display = 'none';
-
-      const input = document.createElement('input');
-      input.type = 'hidden';
-      input.name = 'data';
-      input.value = JSON.stringify(dataObj);
-      form.appendChild(input);
-
-      document.body.appendChild(form);
-      form.submit();
-
-      setTimeout(()=>{
-        if(form.parentNode) form.parentNode.removeChild(form);
-        if(iframe.parentNode) iframe.parentNode.removeChild(iframe);
-        resolve();
-      }, 1200);
-    });
+  // Simpan data lewat JSONP juga (GET dengan action=set), bukan form submission —
+  // supaya kita BENERAN TAU apakah tersimpan atau nggak, bukan kirim-dan-berharap.
+  async function backendSet(dataObj){
+    const encoded = encodeURIComponent(JSON.stringify(dataObj));
+    const url = WEBAPP_URL + '?action=set&data=' + encoded;
+    const result = await jsonpRequest(url);
+    if(!result || result.ok !== true){
+      throw new Error('Server menolak simpan data');
+    }
   }
 
   function backfillData(d){
@@ -463,6 +443,15 @@
     return true;
   }
 
+  // Migrasi satu-kali: paksa ganti nama kedai jadi "BEN BURJO", walaupun
+  // sebelumnya sudah ada nama lain tersimpan dari data lama.
+  function ensureNameFix(){
+    if(data.settings.nameFixV1) return false;
+    data.settings.name = 'BEN BURJO';
+    data.settings.nameFixV1 = true;
+    return true;
+  }
+
   async function loadData(){
     document.getElementById('menuGrid').innerHTML = '<div class="empty-note" style="grid-column:1/-1;">Memuat menu...</div>';
     try{
@@ -482,8 +471,11 @@
       data = backfillData(JSON.parse(JSON.stringify(DEFAULT_DATA)));
       toast('Server lambat merespons, pakai menu sementara — nanti nyambung otomatis');
     }
-    if(ensureFinalMenuV1()){
-      await saveData();
+    let needSave = false;
+    if(ensureFinalMenuV1()) needSave = true;
+    if(ensureNameFix()) needSave = true;
+    if(needSave){
+      try{ await saveData(); }catch(e){ console.error('Gagal simpan hasil migrasi', e); }
     }
     renderAll();
   }
