@@ -405,7 +405,7 @@
       const sep = url.indexOf('?') === -1 ? '?' : '&';
       script.src = url + sep + 'callback=' + cbName + '&_=' + Date.now();
       document.head.appendChild(script);
-      setTimeout(()=>{ if(!settled){ settled = true; cleanup(); reject(new Error('JSONP timeout')); } }, 10000);
+      setTimeout(()=>{ if(!settled){ settled = true; cleanup(); reject(new Error('JSONP timeout')); } }, 6000);
     });
   }
   async function backendGet(){
@@ -464,6 +464,7 @@
   }
 
   async function loadData(){
+    document.getElementById('menuGrid').innerHTML = '<div class="empty-note" style="grid-column:1/-1;">Memuat menu...</div>';
     try{
       const raw = await backendGet();
       if(raw && Object.keys(raw).length > 0){
@@ -473,24 +474,16 @@
         await saveData();
       }
     }catch(e){
-      console.error('Gagal ambil data, coba ulang sebentar...', e);
-      try{
-        await new Promise(r=>setTimeout(r, 1500));
-        const raw2 = await backendGet();
-        if(raw2 && Object.keys(raw2).length > 0){
-          data = backfillData(raw2);
-        } else {
-          data = backfillData(JSON.parse(JSON.stringify(DEFAULT_DATA)));
-          toast('Gagal sambung ke server, coba refresh lagi');
-        }
-      }catch(e2){
-        data = backfillData(JSON.parse(JSON.stringify(DEFAULT_DATA)));
-        toast('Gagal sambung ke server, coba refresh lagi');
-      }
+      // Kalau backend lambat/gagal, JANGAN nunggu lama-lama — langsung pakai
+      // data default (yang isinya udah sama kayak menu asli) biar kasir tetap
+      // bisa jalan. Auto-refresh tiap 7 detik nanti otomatis nyambungin ke data
+      // asli begitu backend-nya siap, tanpa perlu buka ulang halaman.
+      console.error('Gagal ambil data, pakai data sementara dulu', e);
+      data = backfillData(JSON.parse(JSON.stringify(DEFAULT_DATA)));
+      toast('Server lambat merespons, pakai menu sementara — nanti nyambung otomatis');
     }
     if(ensureFinalMenuV1()){
       await saveData();
-      toast('Daftar menu diperbarui');
     }
     renderAll();
   }
