@@ -413,56 +413,64 @@
   }
 
   // Kirim data lewat form ke iframe tersembunyi (nggak ada batas panjang kayak
-  // URL/GET), TAPI langsung dicek ulang pakai JSONP GET buat mastiin beneran
-  // tersimpan. Kalau nggak cocok, coba sekali lagi. Kalau masih gagal, baru
-  // dianggap gagal beneran (toast jujur, bukan diam-diam gagal).
+  // URL/GET). Resolve LANGSUNG setelah form dikirim (nggak nunggu network
+  // selesai) biar UI kasir terasa instan — verifikasi beneran-tersimpan-atau-nggak
+  // jalan di belakang layar secara terpisah, nggak bikin kasir nunggu.
   let formPostCounter = 0;
   function formPostOnce(dataObj){
-    return new Promise((resolve)=>{
-      const frameName = 'wk_frame_' + (formPostCounter++) + '_' + Date.now();
-      const iframe = document.createElement('iframe');
-      iframe.name = frameName;
-      iframe.style.display = 'none';
-      document.body.appendChild(iframe);
+    const frameName = 'wk_frame_' + (formPostCounter++) + '_' + Date.now();
+    const iframe = document.createElement('iframe');
+    iframe.name = frameName;
+    iframe.style.display = 'none';
+    document.body.appendChild(iframe);
 
-      const form = document.createElement('form');
-      form.method = 'POST';
-      form.action = WEBAPP_URL;
-      form.target = frameName;
-      form.style.display = 'none';
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = WEBAPP_URL;
+    form.target = frameName;
+    form.style.display = 'none';
 
-      const input = document.createElement('input');
-      input.type = 'hidden';
-      input.name = 'data';
-      input.value = JSON.stringify(dataObj);
-      form.appendChild(input);
+    const input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = 'data';
+    input.value = JSON.stringify(dataObj);
+    form.appendChild(input);
 
-      document.body.appendChild(form);
-      form.submit();
+    document.body.appendChild(form);
+    form.submit();
 
-      setTimeout(()=>{
-        if(form.parentNode) form.parentNode.removeChild(form);
-        if(iframe.parentNode) iframe.parentNode.removeChild(iframe);
-        resolve();
-      }, 1000);
-    });
+    // Beres-beres elemen sementara ini, tapi nggak perlu ditunggu.
+    setTimeout(()=>{
+      if(form.parentNode) form.parentNode.removeChild(form);
+      if(iframe.parentNode) iframe.parentNode.removeChild(iframe);
+    }, 3000);
   }
-  async function backendSet(dataObj){
+
+  // Cek belakang layar apakah data yang barusan dikirim beneran tersimpan.
+  // Nggak nge-block apapun di UI — kalau gagal setelah dicoba ulang, baru
+  // kasih tau lewat toast (telat dikit, tapi jujur).
+  async function verifyInBackground(dataObj){
     const target = JSON.stringify(dataObj);
-    await formPostOnce(dataObj);
-    await new Promise(r=>setTimeout(r, 900));
-    let verify = null;
-    try{ verify = await backendGet(); }catch(e){ /* diam-diam, dicek lagi di bawah */ }
-    if(JSON.stringify(verify) === target) return; // sukses, cocok
+    await new Promise(r=>setTimeout(r, 1200));
+    try{
+      const verify = await backendGet();
+      if(JSON.stringify(verify) === target) return;
+    }catch(e){ /* lanjut coba ulang di bawah */ }
 
-    // Percobaan kedua kalau belum cocok
-    await formPostOnce(dataObj);
-    await new Promise(r=>setTimeout(r, 900));
-    let verify2 = null;
-    try{ verify2 = await backendGet(); }catch(e){ /* lanjut ke pengecekan di bawah */ }
-    if(JSON.stringify(verify2) === target) return; // sukses di percobaan kedua
+    // Coba sekali lagi
+    formPostOnce(dataObj);
+    await new Promise(r=>setTimeout(r, 1200));
+    try{
+      const verify2 = await backendGet();
+      if(JSON.stringify(verify2) === target) return;
+    }catch(e){ /* jatuh ke peringatan di bawah */ }
 
-    throw new Error('Gagal konfirmasi data tersimpan di server setelah 2x coba');
+    toast('⚠️ Data mungkin belum tersimpan ke server, cek koneksi');
+  }
+
+  async function backendSet(dataObj){
+    formPostOnce(dataObj); // kirim, langsung lanjut tanpa nunggu
+    verifyInBackground(dataObj); // cek belakang layar, terpisah, nggak ditunggu
   }
 
   function backfillData(d){
