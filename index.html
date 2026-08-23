@@ -137,6 +137,7 @@
   .recap-card.full{grid-column:1 / -1;}
   .recap-card.laba .rc-val.pos{color:var(--green);}
   .recap-card.laba .rc-val.neg{color:var(--red);}
+  #rcProgress{font-size:13.5px; font-family:var(--font-body); font-weight:600;}
 
   .tally-row{display:flex; justify-content:space-between; align-items:center; padding:7px 0; border-bottom:1px solid var(--line); font-size:13.5px;}
   .tally-row:last-child{border-bottom:none;}
@@ -261,7 +262,8 @@
   <section class="view" id="view-rekap">
     <div class="segmented" id="rekapSegmented">
       <button data-range="today" class="active">Hari Ini</button>
-      <button data-range="week">7 Hari</button>
+      <button data-range="week">Minggu Ini</button>
+      <button data-range="month">Bulan Ini</button>
       <button data-range="all">Semua</button>
     </div>
 
@@ -271,6 +273,10 @@
       <div class="recap-card"><div class="rc-label">Belanja Bahan</div><div class="rc-val" id="rcBelanja">Rp0</div></div>
       <div class="recap-card"><div class="rc-label">Biaya Operasional</div><div class="rc-val" id="rcBiaya">Rp0</div></div>
       <div class="recap-card laba full"><div class="rc-label">Laba Bersih</div><div class="rc-val" id="rcLaba">Rp0</div></div>
+      <div class="recap-card laba full" id="rcProgressCard" style="display:none;">
+        <div class="rc-label" id="rcProgressLabel">Progress</div>
+        <div class="rc-val" id="rcProgress">-</div>
+      </div>
     </div>
 
     <h2 class="section-title">Item Terlaris</h2>
@@ -836,10 +842,45 @@
     return true;
   }
 
+  // Rentang tanggal kalender sungguhan (bukan cutoff N-hari). offset: 0 = periode
+  // sekarang, -1 = periode sebelumnya (buat perbandingan progress).
+  function getRangeBounds(range, offset){
+    offset = offset || 0;
+    const now = new Date();
+    if(range === 'today'){
+      const d = new Date(now); d.setDate(d.getDate() + offset); d.setHours(0,0,0,0);
+      const end = new Date(d); end.setHours(23,59,59,999);
+      return { start: d, end, label: offset===0 ? 'Hari Ini' : 'Kemarin' };
+    }
+    if(range === 'week'){
+      const day = now.getDay(); // 0=Minggu, 1=Senin, ...
+      const diffToMonday = (day === 0 ? -6 : 1 - day);
+      const monday = new Date(now); monday.setDate(now.getDate() + diffToMonday); monday.setHours(0,0,0,0);
+      monday.setDate(monday.getDate() + offset*7);
+      const sunday = new Date(monday); sunday.setDate(monday.getDate()+6); sunday.setHours(23,59,59,999);
+      return { start: monday, end: sunday, label: offset===0 ? 'Minggu Ini' : 'Minggu Lalu' };
+    }
+    if(range === 'month'){
+      const start = new Date(now.getFullYear(), now.getMonth() + offset, 1, 0,0,0,0);
+      const end = new Date(now.getFullYear(), now.getMonth() + offset + 1, 0, 23,59,59,999);
+      return { start, end, label: offset===0 ? 'Bulan Ini' : 'Bulan Lalu' };
+    }
+    return null; // 'all' -> tanpa batas
+  }
+  function inBounds(iso, bounds){
+    if(!bounds) return true;
+    const t = new Date(iso);
+    return t >= bounds.start && t <= bounds.end;
+  }
+  function omzetInBounds(bounds){
+    return data.transactions.filter(t=>inBounds(t.time, bounds)).reduce((a,t)=>a+t.total,0);
+  }
+
   function renderRekap(){
-    const trans = data.transactions.filter(t=>inRange(t.time));
-    const stok = data.stockLogs.filter(s=>inRange(s.time));
-    const biaya = data.costLogs.filter(b=>inRange(b.time));
+    const bounds = getRangeBounds(rekapRange, 0);
+    const trans = data.transactions.filter(t=>inBounds(t.time, bounds));
+    const stok = data.stockLogs.filter(s=>inBounds(s.time, bounds));
+    const biaya = data.costLogs.filter(b=>inBounds(b.time, bounds));
 
     const omzet = trans.reduce((a,t)=>a+t.total,0);
     const belanja = stok.reduce((a,s)=>a+s.cost,0);
@@ -853,6 +894,31 @@
     const labaEl = document.getElementById('rcLaba');
     labaEl.textContent = (laba<0?'-':'') + rupiah(Math.abs(laba));
     labaEl.className = 'rc-val ' + (laba>=0?'pos':'neg');
+
+    // Progress: bandingkan omzet periode ini vs periode sebelumnya (nggak ada
+    // pembanding buat "Semua", jadi card ini disembunyikan di mode itu)
+    const progressCard = document.getElementById('rcProgressCard');
+    if(rekapRange === 'all'){
+      progressCard.style.display = 'none';
+    } else {
+      const prevBounds = getRangeBounds(rekapRange, -1);
+      const prevOmzet = omzetInBounds(prevBounds);
+      const progressEl = document.getElementById('rcProgress');
+      document.getElementById('rcProgressLabel').textContent = 'Progress vs ' + prevBounds.label;
+      progressCard.style.display = 'block';
+      if(prevOmzet === 0 && omzet === 0){
+        progressEl.textContent = 'Belum ada data buat dibandingkan';
+        progressEl.className = 'rc-val';
+      } else if(prevOmzet === 0){
+        progressEl.textContent = '▲ Omzet baru mulai (' + rupiah(omzet) + ')';
+        progressEl.className = 'rc-val pos';
+      } else {
+        const pct = ((omzet - prevOmzet) / prevOmzet) * 100;
+        const arrow = pct >= 0 ? '▲' : '▼';
+        progressEl.textContent = `${arrow} ${Math.abs(pct).toFixed(0)}% (${rupiah(prevOmzet)} → ${rupiah(omzet)})`;
+        progressEl.className = 'rc-val ' + (pct >= 0 ? 'pos' : 'neg');
+      }
+    }
 
     const tally = {};
     trans.forEach(t=>t.items.forEach(it=>{
